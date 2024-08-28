@@ -1,0 +1,17 @@
+services:
+    snakeeater:
+        build: .
+        tty: true
+        volumes:
+            - rss_volume:/rss
+    nginx:
+        image: nginx
+        volumes:
+            - rss_volume:/usr/share/nginx/html/
+        ports:
+           - "81:81"
+        environment:
+           - NGINX_PORT=80
+        
+volumes:
+    rss_volume:
